@@ -20,7 +20,7 @@ const isValid = (username)=>{ //returns boolean
 const authenticatedUser = (username,password)=>{ //returns boolean
 //write code to check if username and password match the one we have in records.
   console.log("AuthenticatedUser:username = ", username, ", pass=", password)
-  console.log("AuthenticatedUser:user = ", users[0].username)
+  //console.log("AuthenticatedUser:user = ", users[0].username)
   let validusers = users.filter((user)=>{
     console.log("Authenticated: Filter: User = ", user.username, ", Pass=", user.password)
     console.log("Authenticated: Filter: matching user = ", username, ", pass=", password)
@@ -73,17 +73,8 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
   console.log("Review: review = ", review)
   console.log("username => ", req.user)
 
-  if (reviews.hasOwnProperty(user)) {
-    console.log("Review Book = ", books[isbn], ", isbn = ", isbn, "length =", Object.keys(books[isbn].reviews).length)
-    console.log("Review Book = ", review)
-    console.log("Put: Review: Updating review ", review, ", for book #", isbn )
-    books[isbn]['reviews'][user] = review;
-    res.status(200).json({message:"review updated= ", review})
-  } else {
-    console.log("Review: New user, ", user)
-    books[isbn]['reviews'][user] = review;
-    res.status(200).json({message:"Added new review", review})
-  }
+  res.status(200).json({message:"The review for book with ISBN :" + isbn + " has been added/updated"})
+
 });
 
 regd_users.delete("/auth/review/:isbn", (req, res) => {
